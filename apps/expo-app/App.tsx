@@ -1,19 +1,24 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
-import { Button } from "@/components";
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Home, Details } from "@/screens";
+import type { RootStackParamList } from "@/screens";
 
-export default function App() {
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+function App() {
   return (
-    <View className="flex-1 bg-black items-center justify-center">
-      <Text className="text-white text-2xl">Hello world</Text>
-      <View className="flex gap-3 flex-row flex-wrap justify-center mt-3">
-        <Button variant="primary">Primary Button</Button>
-        <Button variant="secondary">Secondary Button</Button>
-        <Button variant="danger" size="xl">
-          Danger Button
-        </Button>
-        <StatusBar style="auto" />
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          animation: "none",
+        }}
+      >
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Details" component={Details} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
+
+export default App;
