@@ -6,7 +6,7 @@ import type { RootStackParamList } from "@/screens";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-function App() {
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -19,6 +19,6 @@ function App() {
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default App;
