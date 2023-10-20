@@ -7,7 +7,7 @@ import {
   type View,
 } from "react-native";
 import { cva, type VariantProps } from "class-variance-authority";
-import clsx from "clsx";
+import { cn } from "@/utils/cn";
 
 const buttonCva = cva(
   "inline-flex items-center justify-center rounded font-medium outline-none select-none self-start",
@@ -71,7 +71,7 @@ export interface ButtonProps
   extends PressableProps,
     VariantProps<typeof buttonCva> {
   children: TextProps["children"];
-  tailwind?: string;
+  className?: string;
 }
 
 const Button = forwardRef<View, ButtonProps>(({ children, ...props }, ref) => {
@@ -82,13 +82,13 @@ const Button = forwardRef<View, ButtonProps>(({ children, ...props }, ref) => {
     isDisabled,
     isRounded,
     isAspectSquare,
-    tailwind,
+    className,
   } = props;
 
   return (
     <Pressable
       disabled={isDisabled}
-      className={clsx(
+      className={cn(
         buttonCva({
           variant,
           size,
@@ -97,7 +97,7 @@ const Button = forwardRef<View, ButtonProps>(({ children, ...props }, ref) => {
           isAspectSquare,
           isDisabled,
         }),
-        tailwind,
+        className,
       )}
       {...props}
       ref={ref}
